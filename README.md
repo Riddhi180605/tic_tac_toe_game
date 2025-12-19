@@ -117,3 +117,5 @@ This project demonstrates:
 - UI/UX animation principles
 
 ---
+⚠️ Firebase credentials are client-side and safe to expose.
+This project uses open database rules for demo purposes only.
