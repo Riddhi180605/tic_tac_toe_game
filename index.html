@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TicToc - Advanced Tic-Tac-Toe Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="loadingScreen" class="loading-screen">
+      <div class="spinner"></div>
+      <p>Loading TicToc...</p>
+    </div>
+
+    <div id="appContainer" class="app-container hidden">
+      <header class="header">
+        <h1 class="title">🎮 Tic Tac Toe</h1>
+        <p class="subtitle">Next-Gen Tic-Tac-Toe Experience</p>
+      </header>
+
+      <section id="mainMenu" class="menu-section">
+        <div class="menu-card">
+          <h2>Select Game Mode</h2>
+          <div class="menu-buttons">
+            <button class="modeBtn offline-btn" onclick="selectGameType('offline')">
+              <span class="icon">👥</span>
+              <span>Offline Multiplayer</span>
+            </button>
+            <button class="modeBtn computer-btn" onclick="selectGameType('computer')">
+              <span class="icon">🤖</span>
+              <span>Play vs Computer</span>
+            </button>
+            <button class="modeBtn online-btn" onclick="selectGameType('online')">
+              <span class="icon">🌐</span>
+              <span>Online Multiplayer</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="onlineMenu" class="menu-section hidden">
+        <div class="menu-card">
+          <h2>Online Mode</h2>
+          <div class="menu-buttons">
+            <button class="modeBtn create-btn" onclick="selectOnlineMode('create')">
+              <span class="icon">➕</span>
+              <span>Create Room</span>
+            </button>
+            <button class="modeBtn join-btn" onclick="selectOnlineMode('join')">
+              <span class="icon">🔓</span>
+              <span>Join Room</span>
+            </button>
+          </div>
+          <button class="back-btn" onclick="goBackToMain()">← Back</button>
+        </div>
+      </section>
+
+      <div id="createRoomDisplay" class="modal hidden">
+        <div class="modal-content">
+          <h2>Creating Room...</h2>
+          <div id="roomCode" class="room-code-display">000000</div>
+          <p id="waitingText" class="waiting-text">Waiting for opponent...</p>
+          <p class="hint-text">Share this code with your friend!</p>
+          <button class="back-btn" onclick="goBackToOnlineMenu()">← Cancel</button>
+        </div>
+      </div>
+
+      <div id="joinRoomDisplay" class="modal hidden">
+        <div class="modal-content">
+          <h2>Join Room</h2>
+          <input type="text" id="roomCodeInput" class="room-input" placeholder="6-digit code" maxlength="6">
+          <button class="modeBtn join-btn" onclick="joinRoomWithCode()" style="margin-top: 15px; width: 100%;">Join Game</button>
+          <button class="back-btn" onclick="goBackToOnlineMenu()">← Back</button>
+        </div>
+      </div>
+
+      <section class="game-area hidden" id="gameArea">
+        <div class="game-stats">
+          <div class="stat-box">
+            <span class="stat-label">Status</span>
+            <span id="turn" class="turn-label">Turn: X</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Mode</span>
+            <span id="modeDisplay" class="mode-display">Offline</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Score</span>
+            <span id="scoreDisplay" class="score-display">0 - 0</span>
+          </div>
+        </div>
+        <div id="board" class="board"></div>
+        <div class="game-controls">
+          <button id="restartBtn" class="restartBtn">🔄 New Game</button>
+          <button class="menu-btn" onclick="goToMainMenu()">🏠 Main Menu</button>
+        </div>
+      </section>
+
+      <div id="toast" class="toast"></div>
+      <footer class="footer"><p>Made with ❤️ | © 2025 TicToc</p></footer>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
